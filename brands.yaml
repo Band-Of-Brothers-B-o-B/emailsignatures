@@ -1,0 +1,36 @@
+# brands.yml — edit me to change branding
+brands:
+  - id: aividz.online
+    name: AIVidz
+    domain: aividz.online
+    bg_shape: rounded   # rounded | circle | diamond
+    primary: "#111827"  # near-black
+    accent:  "#0EA5E9"  # cyan accent (optional)
+
+  - id: fontofmadness.uk
+    name: Font of Madness
+    domain: fontofmadness.uk
+    bg_shape: rounded
+    primary: "#4F46E5"  # purple
+    accent:  "#111827"
+
+  - id: madgodnerevar.uk
+    name: MadGodNerevar
+    domain: madgodnerevar.uk
+    bg_shape: rounded
+    primary: "#0EA5E9"
+    accent:  "#0B1020"
+
+  - id: nebula-project.org
+    name: Nebula Project
+    domain: nebula-project.org
+    bg_shape: circle
+    primary: "#0F766E"  # teal
+    accent:  "#0B1020"
+
+  - id: speldridge
+    name: Speldridge
+    domain: "speldridge.co.uk · .tech"
+    bg_shape: rounded
+    primary: "#111827"
+    accent:  "#6B7280"
