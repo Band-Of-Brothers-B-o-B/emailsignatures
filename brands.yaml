@@ -1,4 +1,4 @@
-# brands.yml — edit me to change branding
+# brands.yaml — edit me to change branding
 brands:
   - id: aividz.online
     name: AIVidz
@@ -27,6 +27,8 @@ brands:
     bg_shape: circle
     primary: "#0F766E"  # teal
     accent:  "#0B1020"
+    gradient: true
+    gradient_angle: 45
 
   - id: speldridge
     name: Speldridge

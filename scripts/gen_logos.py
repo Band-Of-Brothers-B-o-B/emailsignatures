@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, sys, json, yaml, textwrap
+import os, sys, json, yaml, textwrap, math
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/.."
 ROOT = os.path.normpath(ROOT)
@@ -15,23 +15,68 @@ TEMPLATE = """\
 </svg>
 """
 
-def badge_svg(shape, primary, accent, initials):
+def _hex_to_rgb(col):
+    col = col.lstrip("#")
+    r, g, b = int(col[0:2], 16) / 255.0, int(col[2:4], 16) / 255.0, int(col[4:6], 16) / 255.0
+    return r, g, b
+
+def _rel_lum(col):
+    def chan(c):
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    r, g, b = _hex_to_rgb(col)
+    r, g, b = chan(r), chan(g), chan(b)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+def contrast_ratio(a, b):
+    l1, l2 = sorted([_rel_lum(a), _rel_lum(b)], reverse=True)
+    return (l1 + 0.05) / (l2 + 0.05)
+
+def pick_initials_color(primary, accent=None):
+    backgrounds = [primary]
+    if accent:
+        backgrounds.append(accent)
+    if all(contrast_ratio(bg, "#FFFFFF") >= 4.5 for bg in backgrounds):
+        return "white"
+    return "#111827"
+
+def _gradient_def(primary, accent, angle):
+    rad = math.radians(angle % 360)
+    x1 = 0.5 - 0.5 * math.cos(rad)
+    y1 = 0.5 - 0.5 * math.sin(rad)
+    x2 = 0.5 + 0.5 * math.cos(rad)
+    y2 = 0.5 + 0.5 * math.sin(rad)
+    return f"""
+    <defs>
+      <linearGradient id="badgeGrad" x1="{x1:.3f}" y1="{y1:.3f}" x2="{x2:.3f}" y2="{y2:.3f}">
+        <stop offset="0%" stop-color="{primary}"/>
+        <stop offset="100%" stop-color="{accent}"/>
+      </linearGradient>
+    </defs>
+"""
+
+def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_angle=0):
+    defs = ""
+    fill = primary
+    if use_gradient:
+        defs = _gradient_def(primary, accent, gradient_angle)
+        fill = "url(#badgeGrad)"
+    text_color = pick_initials_color(primary, accent if use_gradient else None)
     if shape == "circle":
-        return f"""
-    <circle cx="48" cy="48" r="48" fill="{primary}"/>
-    <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="white">{initials}</text>
+        return f"""{defs}
+    <circle cx="48" cy="48" r="48" fill="{fill}"/>
+    <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="{text_color}">{initials}</text>
 """
     elif shape == "diamond":
-        return f"""
+        return f"""{defs}
     <g transform="translate(0,0)">
-      <rect x="0" y="0" width="96" height="96" fill="{primary}" transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
-      <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" fill="white">{initials}</text>
+      <rect x="0" y="0" width="96" height="96" fill="{fill}" transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
+      <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" fill="{text_color}">{initials}</text>
     </g>
 """
     else:  # rounded
-        return f"""
-    <rect rx="16" ry="16" width="96" height="96" fill="{primary}"/>
-    <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="white">{initials}</text>
+        return f"""{defs}
+    <rect rx="16" ry="16" width="96" height="96" fill="{fill}"/>
+    <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="{text_color}">{initials}</text>
 """
 
 def initials_from_name(name):
@@ -59,7 +104,14 @@ def main():
         folder = os.path.join(ROOT, b["id"])
         os.makedirs(folder, exist_ok=True)
         initials = initials_from_name(b["name"])
-        badge = badge_svg(b.get("bg_shape","rounded"), b.get("primary","#111827"), b.get("accent","#6B7280"), initials)
+        badge = badge_svg(
+            b.get("bg_shape", "rounded"),
+            b.get("primary", "#111827"),
+            b.get("accent", "#6B7280"),
+            initials,
+            b.get("gradient", False),
+            b.get("gradient_angle", 0),
+        )
         svg = TEMPLATE.format(
             badge=badge,
             title_color=b.get("accent","#111827"),
