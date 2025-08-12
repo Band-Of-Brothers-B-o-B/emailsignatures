@@ -30,7 +30,7 @@ brands:
 
   - id: speldridge
     name: Speldridge
-    domain: "speldridge.co.uk · .tech"
+    domain: "speldidge.tech · speldridge.co.uk"
     bg_shape: rounded
     primary: "#111827"
     accent:  "#6B7280"
