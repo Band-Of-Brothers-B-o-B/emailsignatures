@@ -72,9 +72,9 @@ jobs:
           ls -l
 
       - run: |
-          git stash --include-untracked
+          git stash --include-untracked || true
           git pull --rebase origin main
-          git stash pop
+          git stash pop || true
 
       - name: Commit rendered images
         uses: stefanzweifel/git-auto-commit-action@v5
