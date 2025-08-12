@@ -4,11 +4,11 @@ brands:
     name: AIVidz
     domain: aividz.online
     bg_shape: rounded
-    primary: "#00BFA5"
-    accent:  "#794BC4"
+    primary: "#101D2E"
+    accent:  "#00BFA5"
     use_gradient: true
-    gradient_from: "#00BFA5"
-    gradient_to: "#794BC4"
+    gradient_from: "#111C2E"
+    gradient_to: "#2C145B"
     gradient_angle: 135
 
   - id: fontofmadness.uk
@@ -31,17 +31,20 @@ brands:
     name: Nebula Project
     domain: nebula-project.org
     bg_shape: circle
-    primary: "#0F766E"
-    accent:  "#0B1020"
+    primary: "#1A202C"
+    accent:  "#62EFFF"
     use_gradient: true
-    gradient_from: "#0F766E"
-    gradient_to: "#0B1020"
-    gradient_angle: 45
+    gradient_from: "#62EFFF"
+    gradient_to: "#B388FF"
+    gradient_angle: 90
 
   - id: speldridge
     name: Speldridge
     domain: "speldridge.tech · speldridge.co.uk"
     bg_shape: rounded
-    primary: "#111827"
-    accent:  "#6B7280"
-    use_gradient: false
+    primary: "#100629"
+    accent:  "#6C2EB7"
+    use_gradient: true
+    gradient_from: "#6C2EB7"
+    gradient_to: "#00DACB"
+    gradient_angle: 135

@@ -4,15 +4,15 @@
 
     <defs>
       <linearGradient id="badgeGrad" x1="0.854" y1="0.146" x2="0.146" y2="0.854">
-        <stop offset="0%" stop-color="#00BFA5"/>
-        <stop offset="100%" stop-color="#794BC4"/>
+        <stop offset="0%" stop-color="#111C2E"/>
+        <stop offset="100%" stop-color="#2C145B"/>
       </linearGradient>
     </defs>
 
     <rect rx="16" ry="16" width="96" height="96" fill="url(#badgeGrad)"/>
-    <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="#111827">AV</text>
+    <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="white">AV</text>
 
-    <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#794BC4">AIVidz</text>
+    <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#00BFA5">AIVidz</text>
     <text x="120" y="116" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">aividz.online</text>
   </g>
 </svg>
