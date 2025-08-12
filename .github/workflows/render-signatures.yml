@@ -58,6 +58,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Rebase onto latest main
+        run: git pull --rebase --autostash origin main
+
       - name: Install Inkscape
         run: |
           sudo apt-get update
