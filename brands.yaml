@@ -5,7 +5,11 @@ brands:
     domain: aividz.online
     bg_shape: rounded   # rounded | circle | diamond
     primary: "#111827"  # near-black
-    accent:  "#0EA5E9"  # cyan accent (optional)
+    accent:  "#00BFA5"  # teal accent (optional)
+    use_gradient: true
+    gradient_from: "#00BFA5"
+    gradient_to: "#7C4DFF"
+    gradient_angle: 135
 
   - id: fontofmadness.uk
     name: Font of Madness
@@ -13,6 +17,10 @@ brands:
     bg_shape: rounded
     primary: "#4F46E5"  # purple
     accent:  "#111827"
+    use_gradient: false
+    gradient_from: null
+    gradient_to: null
+    gradient_angle: 0
 
   - id: madgodnerevar.uk
     name: MadGodNerevar
@@ -20,6 +28,10 @@ brands:
     bg_shape: rounded
     primary: "#0EA5E9"
     accent:  "#0B1020"
+    use_gradient: false
+    gradient_from: null
+    gradient_to: null
+    gradient_angle: 0
 
   - id: nebula-project.org
     name: Nebula Project
@@ -36,3 +48,7 @@ brands:
     bg_shape: rounded
     primary: "#111827"
     accent:  "#6B7280"
+    use_gradient: false
+    gradient_from: null
+    gradient_to: null
+    gradient_angle: 0
