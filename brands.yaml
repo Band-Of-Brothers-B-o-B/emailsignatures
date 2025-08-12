@@ -3,19 +3,19 @@ brands:
   - id: aividz.online
     name: AIVidz
     domain: aividz.online
-    bg_shape: rounded   # rounded | circle | diamond
-    primary: "#111827"  # near-black
-    accent:  "#00BFA5"  # teal accent (optional)
+    bg_shape: rounded
+    primary: "#00BFA5"
+    accent:  "#794BC4"
     use_gradient: true
     gradient_from: "#00BFA5"
-    gradient_to: "#7C4DFF"
+    gradient_to: "#794BC4"
     gradient_angle: 135
 
   - id: fontofmadness.uk
     name: Font of Madness
     domain: fontofmadness.uk
     bg_shape: rounded
-    primary: "#4F46E5"  # purple
+    primary: "#4F46E5"
     accent:  "#111827"
     use_gradient: false
 
@@ -31,7 +31,7 @@ brands:
     name: Nebula Project
     domain: nebula-project.org
     bg_shape: circle
-    primary: "#0F766E"  # teal
+    primary: "#0F766E"
     accent:  "#0B1020"
     use_gradient: true
     gradient_from: "#0F766E"
