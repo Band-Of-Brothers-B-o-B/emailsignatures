@@ -1,4 +1,4 @@
-# brands.yml — edit me to change branding
+# brands.yaml — edit me to change branding
 brands:
   - id: aividz.online
     name: AIVidz
@@ -37,12 +37,10 @@ brands:
     name: Nebula Project
     domain: nebula-project.org
     bg_shape: circle
-    primary: "#6B46C1"  # purple
-    accent:  "#2B6CB0"  # blue
-    use_gradient: true
-    gradient_from: "#6B46C1"
-    gradient_to: "#2B6CB0"
-    gradient_angle: 90
+    primary: "#0F766E"  # teal
+    accent:  "#0B1020"
+    gradient: true
+    gradient_angle: 45
 
   - id: speldridge
     name: Speldridge
