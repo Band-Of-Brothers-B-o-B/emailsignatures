@@ -3,16 +3,16 @@
   <g transform="translate(24,24)">
 
     <defs>
-      <linearGradient id="badgeGrad" x1="0.146" y1="0.146" x2="0.854" y2="0.854">
-        <stop offset="0%" stop-color="#0F766E"/>
-        <stop offset="100%" stop-color="#0B1020"/>
+      <linearGradient id="badgeGrad" x1="0.500" y1="0.000" x2="0.500" y2="1.000">
+        <stop offset="0%" stop-color="#62EFFF"/>
+        <stop offset="100%" stop-color="#B388FF"/>
       </linearGradient>
     </defs>
 
     <circle cx="48" cy="48" r="48" fill="url(#badgeGrad)"/>
-    <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="white">NP</text>
+    <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="#111827">NP</text>
 
-    <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#0B1020">Nebula Project</text>
+    <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#62EFFF">Nebula Project</text>
     <text x="120" y="116" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">nebula-project.org</text>
   </g>
 </svg>
