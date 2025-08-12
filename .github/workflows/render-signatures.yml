@@ -1,7 +1,8 @@
-name: Render signature images
+name: Render Signature Images
 
 on:
   push:
+    branches: [ main ]
     paths:
       - 'aividz.online/logo.svg'
       - 'fontofmadness.uk/logo.svg'
@@ -17,6 +18,7 @@ jobs:
     permissions:
       contents: write
     strategy:
+      fail-fast: false
       matrix:
         folder:
           - aividz.online
@@ -24,15 +26,17 @@ jobs:
           - madgodnerevar.uk
           - nebula-project.org
           - speldridge
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Install Inkscape
         run: |
           sudo apt-get update
           sudo apt-get install -y inkscape
 
-      - name: Render ${{ matrix.folder }} (SVG -> PNG 1x/2x)
+      - name: Render ${{ matrix.folder }} (SVG → PNG 1x/2x)
         working-directory: ./${{ matrix.folder }}
         run: |
           set -euo pipefail
@@ -45,4 +49,8 @@ jobs:
         with:
           commit_message: "chore(images): render PNGs from SVG"
           file_pattern: |
-            aividz.online/log
+            aividz.online/logo*.png
+            fontofmadness.uk/logo*.png
+            madgodnerevar.uk/logo*.png
+            nebula-project.org/logo*.png
+            speldridge/logo*.png
