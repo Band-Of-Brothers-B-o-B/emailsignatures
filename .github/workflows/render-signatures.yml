@@ -47,7 +47,6 @@ jobs:
     permissions:
       contents: write
     strategy:
-      fail-fast: false
       max-parallel: 1   # serialize to avoid non-fast-forward pushes
       matrix:
         folder:
@@ -72,8 +71,11 @@ jobs:
           inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640 --export-area-drawing
           ls -l
 
+      - run: git pull --rebase origin main
+
       - name: Commit rendered images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(images): render PNGs from SVG"
           file_pattern: "${{ matrix.folder }}/logo*.png"
+          push_options: '--force-with-lease'
