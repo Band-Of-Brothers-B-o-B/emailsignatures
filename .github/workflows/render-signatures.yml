@@ -80,5 +80,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(images): render PNGs from SVG"
-          file_pattern: "${{ matrix.folder }}/logo*.png"
+          file_pattern: |
+            ${{ matrix.folder }}/logo*.png
+            ${{ matrix.folder }}/signature/*.html
           push_options: '--force-with-lease'
