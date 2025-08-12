@@ -16,21 +16,29 @@ TEMPLATE = """\
 """
 
 def badge_svg(shape, primary, accent, initials):
+    gradient = f"""\
+    <defs>
+      <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="{primary}"/>
+        <stop offset="100%" stop-color="{accent}"/>
+      </linearGradient>
+    </defs>
+"""
     if shape == "circle":
-        return f"""
-    <circle cx="48" cy="48" r="48" fill="{primary}"/>
+        return f"""{gradient}
+    <circle cx="48" cy="48" r="48" fill="url(#grad)"/>
     <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="white">{initials}</text>
 """
     elif shape == "diamond":
-        return f"""
+        return f"""{gradient}
     <g transform="translate(0,0)">
-      <rect x="0" y="0" width="96" height="96" fill="{primary}" transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
+      <rect x="0" y="0" width="96" height="96" fill="url(#grad)" transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
       <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" fill="white">{initials}</text>
     </g>
 """
     else:  # rounded
-        return f"""
-    <rect rx="16" ry="16" width="96" height="96" fill="{primary}"/>
+        return f"""{gradient}
+    <rect rx="16" ry="16" width="96" height="96" fill="url(#grad)"/>
     <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="white">{initials}</text>
 """
 
@@ -51,7 +59,7 @@ def save_svg(path, svg):
         f.write(svg)
 
 def main():
-    cfg_path = os.path.join(ROOT, "brands.yml")
+    cfg_path = os.path.join(ROOT, "brands.yaml")
     with open(cfg_path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
