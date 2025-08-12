@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, sys, json, yaml, textwrap, math
+import os, sys, json, yaml, textwrap, math, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/.."
 ROOT = os.path.normpath(ROOT)
@@ -39,7 +39,7 @@ def pick_initials_color(primary, accent=None):
         return "white"
     return "#111827"
 
-def _gradient_def(primary, accent, angle):
+def _gradient_def(gradient_from, gradient_to, angle):
     rad = math.radians(angle % 360)
     x1 = 0.5 - 0.5 * math.cos(rad)
     y1 = 0.5 - 0.5 * math.sin(rad)
@@ -48,19 +48,19 @@ def _gradient_def(primary, accent, angle):
     return f"""
     <defs>
       <linearGradient id="badgeGrad" x1="{x1:.3f}" y1="{y1:.3f}" x2="{x2:.3f}" y2="{y2:.3f}">
-        <stop offset="0%" stop-color="{primary}"/>
-        <stop offset="100%" stop-color="{accent}"/>
+        <stop offset="0%" stop-color="{gradient_from}"/>
+        <stop offset="100%" stop-color="{gradient_to}"/>
       </linearGradient>
     </defs>
 """
 
-def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_angle=0):
+def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_from=None, gradient_to=None, gradient_angle=0):
     defs = ""
     fill = primary
     if use_gradient:
-        defs = _gradient_def(primary, accent, gradient_angle)
+        defs = _gradient_def(gradient_from or primary, gradient_to or accent, gradient_angle)
         fill = "url(#badgeGrad)"
-    text_color = pick_initials_color(primary, accent if use_gradient else None)
+    text_color = pick_initials_color(gradient_from or primary, (gradient_to or accent) if use_gradient else None)
     if shape == "circle":
         return f"""{defs}
     <circle cx="48" cy="48" r="48" fill="{fill}"/>
@@ -80,14 +80,25 @@ def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_ang
 """
 
 def initials_from_name(name):
-    parts = [p for p in name.split() if p and p[0].isalnum()]
-    if not parts: return "•"
-    # e.g., "Font of Madness" -> "FoM"
+    """Return up to three initials derived from *name*.
+
+    Splits the input on whitespace, non-letter transitions, and camelCase
+    boundaries. Small connector words are ignored. If no letters are found a
+    bullet "\u2022" is returned.
+    """
+
+    tokens = re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", name)
+    if not tokens:
+        return "•"
+
     letters = []
-    for p in parts:
-        if p.lower() in {"of","and","the","a","an"}:  # skip small words
+    for tok in tokens:
+        if tok.lower() in {"of", "and", "the", "a", "an"}:
             continue
-        letters.append(p[0])
+        letters.append(tok[0])
+        if len(letters) == 3:
+            break
+
     s = "".join(letters) or name[0]
     return s[:3]
 
@@ -109,7 +120,9 @@ def main():
             b.get("primary", "#111827"),
             b.get("accent", "#6B7280"),
             initials,
-            b.get("gradient", False),
+            b.get("use_gradient", False),
+            b.get("gradient_from"),
+            b.get("gradient_to"),
             b.get("gradient_angle", 0),
         )
         svg = TEMPLATE.format(
