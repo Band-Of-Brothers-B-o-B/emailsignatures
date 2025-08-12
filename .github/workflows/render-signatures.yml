@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'brands.yml'
+      - 'brands.yaml'
       - 'aividz.online/logo.svg'
       - 'fontofmadness.uk/logo.svg'
       - 'madgodnerevar.uk/logo.svg'
@@ -16,6 +16,8 @@ on:
 
 jobs:
   generate-svgs:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,14 +26,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y python3-pip
           python3 -m pip install pyyaml
-      - name: Generate SVGs from brands.yml
+      - name: Generate SVGs from brands.yaml
         run: |
           chmod +x scripts/gen_logos.py
           python3 scripts/gen_logos.py
       - name: Commit updated SVGs (if any)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(branding): regenerate SVGs from brands.yml"
+          commit_message: "chore(branding): regenerate SVGs from brands.yaml"
           file_pattern: |
             aividz.online/logo.svg
             fontofmadness.uk/logo.svg
