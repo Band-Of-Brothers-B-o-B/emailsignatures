@@ -39,7 +39,9 @@ brands:
     bg_shape: circle
     primary: "#0F766E"  # teal
     accent:  "#0B1020"
-    gradient: true
+    use_gradient: true
+    gradient_from: "#0F766E"
+    gradient_to: "#0B1020"
     gradient_angle: 45
 
   - id: speldridge
