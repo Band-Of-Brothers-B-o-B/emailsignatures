@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, sys, json, yaml, textwrap, math
+import os, sys, json, yaml, textwrap, math, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/.."
 ROOT = os.path.normpath(ROOT)
@@ -80,14 +80,25 @@ def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_fro
 """
 
 def initials_from_name(name):
-    parts = [p for p in name.split() if p and p[0].isalnum()]
-    if not parts: return "•"
-    # e.g., "Font of Madness" -> "FoM"
+    """Return up to three initials derived from *name*.
+
+    Splits the input on whitespace, non-letter transitions, and camelCase
+    boundaries. Small connector words are ignored. If no letters are found a
+    bullet "\u2022" is returned.
+    """
+
+    tokens = re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", name)
+    if not tokens:
+        return "•"
+
     letters = []
-    for p in parts:
-        if p.lower() in {"of","and","the","a","an"}:  # skip small words
+    for tok in tokens:
+        if tok.lower() in {"of", "and", "the", "a", "an"}:
             continue
-        letters.append(p[0])
+        letters.append(tok[0])
+        if len(letters) == 3:
+            break
+
     s = "".join(letters) or name[0]
     return s[:3]
 
