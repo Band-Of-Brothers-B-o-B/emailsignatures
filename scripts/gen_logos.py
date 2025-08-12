@@ -51,7 +51,7 @@ def save_svg(path, svg):
         f.write(svg)
 
 def main():
-    cfg_path = os.path.join(ROOT, "brands.yml")
+    cfg_path = os.path.join(ROOT, "brands.yaml")
     with open(cfg_path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
