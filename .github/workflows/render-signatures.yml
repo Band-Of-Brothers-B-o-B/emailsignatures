@@ -4,22 +4,49 @@ on:
   push:
     branches: [ main ]
     paths:
+      - 'brands.yml'
       - 'aividz.online/logo.svg'
       - 'fontofmadness.uk/logo.svg'
       - 'madgodnerevar.uk/logo.svg'
       - 'nebula-project.org/logo.svg'
       - 'speldridge/logo.svg'
       - '.github/workflows/render-signatures.yml'
+      - 'scripts/gen_logos.py'
   workflow_dispatch:
 
 jobs:
-  render:
+  generate-svgs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Python deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          python3 -m pip install pyyaml
+      - name: Generate SVGs from brands.yml
+        run: |
+          chmod +x scripts/gen_logos.py
+          python3 scripts/gen_logos.py
+      - name: Commit updated SVGs (if any)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(branding): regenerate SVGs from brands.yml"
+          file_pattern: |
+            aividz.online/logo.svg
+            fontofmadness.uk/logo.svg
+            madgodnerevar.uk/logo.svg
+            nebula-project.org/logo.svg
+            speldridge/logo.svg
+
+  render-pngs:
+    needs: generate-svgs
     runs-on: ubuntu-latest
     permissions:
       contents: write
     strategy:
       fail-fast: false
-      max-parallel: 1   # 🚀 Runs matrix jobs sequentially to avoid push conflicts
+      max-parallel: 1   # serialize to avoid non-fast-forward pushes
       matrix:
         folder:
           - aividz.online
@@ -27,27 +54,24 @@ jobs:
           - madgodnerevar.uk
           - nebula-project.org
           - speldridge
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Inkscape
         run: |
           sudo apt-get update
           sudo apt-get install -y inkscape
 
-      - name: Render ${{ matrix.folder }} (SVG → PNG 1x/2x)
+      - name: Render ${{ matrix.folder }} → PNG 320/640 (drawing bounds)
         working-directory: ./${{ matrix.folder }}
         run: |
           set -euo pipefail
-          inkscape logo.svg --export-type=png --export-filename=logo.png -w 320
-          inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640
+          inkscape logo.svg --export-type=png --export-filename=logo.png   -w 320 --export-area-drawing
+          inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640 --export-area-drawing
           ls -l
 
       - name: Commit rendered images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(images): render PNGs from SVG"
-          file_pattern: |
-            ${{ matrix.folder }}/logo*.png
+          file_pattern: "${{ matrix.folder }}/logo*.png"
