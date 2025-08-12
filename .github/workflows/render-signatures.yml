@@ -40,8 +40,8 @@ jobs:
         working-directory: ./${{ matrix.folder }}
         run: |
           set -euo pipefail
-          inkscape logo.svg --export-type=png --export-filename=logo.png -w 160
-          inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 320
+          inkscape logo.svg --export-type=png --export-filename=logo.png -w 320
+          inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640
           ls -l
 
       - name: Commit rendered images
