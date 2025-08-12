@@ -1,0 +1,55 @@
+name: Render signature images
+on:
+  push:
+    paths:
+      - 'aividz.online/logo.svg'
+      - 'fontofmadness.uk/logo.svg'
+      - 'madgodnerevar.uk/logo.svg'
+      - 'nebula-project.org/logo.svg'
+      - 'speldridge/logo.svg'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        folder:
+          - aividz.online
+          - fontofmadness.uk
+          - madgodnerevar.uk
+          - nebula-project.org
+          - speldridge
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin || true
+          if ! command -v rsvg-convert >/dev/null; then
+            sudo apt-get install -y inkscape
+          fi
+
+      - name: Render ${{ matrix.folder }}
+        working-directory: ./${{ matrix.folder }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          IN=logo.svg
+          W1=160; W2=320
+          rsvg-convert -w "$W1" "$IN" > logo.png || inkscape "$IN" --export-type=png --export-filename=logo.png -w "$W1"
+          rsvg-convert -w "$W2" "$IN" > logo@2x.png || inkscape "$IN" --export-type=png --export-filename=logo@2x.png -w "$W2"
+
+      - name: Commit rendered images
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(images): render PNGs from SVG"
+          file_pattern: |
+            aividz.online/logo*.png
+            fontofmadness.uk/logo*.png
+            madgodnerevar.uk/logo*.png
+            nebula-project.org/logo*.png
+            speldridge/logo*.png
