@@ -9,7 +9,7 @@ TEMPLATE = """\
   <rect width="100%" height="100%" fill="white"/>
   <g transform="translate(24,24)">
     {badge}
-    <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="{title_color}">{brand_name}</text>
+    <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="{brand_color}">{brand_name}</text>
     <text x="120" y="116" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">{domain}</text>
   </g>
 </svg>
@@ -115,8 +115,9 @@ def main():
         folder = os.path.join(ROOT, b["id"])
         os.makedirs(folder, exist_ok=True)
         initials = initials_from_name(b["name"])
+        badge_shape = b.get("badge_shape", b.get("bg_shape", "rounded"))
         badge = badge_svg(
-            b.get("bg_shape", "rounded"),
+            badge_shape,
             b.get("primary", "#111827"),
             b.get("accent", "#6B7280"),
             initials,
@@ -127,7 +128,7 @@ def main():
         )
         svg = TEMPLATE.format(
             badge=badge,
-            title_color=b.get("accent","#111827"),
+            brand_color=b.get("accent", "#111827"),
             brand_name=b["name"],
             domain=b["domain"]
         )
