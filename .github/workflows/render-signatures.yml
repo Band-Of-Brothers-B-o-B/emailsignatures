@@ -17,6 +17,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    strategy:
+      fail-fast: false
+      max-parallel: 1   # 🚀 Runs matrix jobs sequentially to avoid push conflicts
+      matrix:
+        folder:
+          - aividz.online
+          - fontofmadness.uk
+          - madgodnerevar.uk
+          - nebula-project.org
+          - speldridge
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -26,25 +37,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y inkscape
 
-      - name: Render all folders (SVG → PNG 320/640)
-        shell: bash
+      - name: Render ${{ matrix.folder }} (SVG → PNG 1x/2x)
+        working-directory: ./${{ matrix.folder }}
         run: |
           set -euo pipefail
-          folders=(aividz.online fontofmadness.uk madgodnerevar.uk nebula-project.org speldridge)
-          for f in "${folders[@]}"; do
-            echo "Rendering $f"
-            inkscape "$f/logo.svg" --export-type=png --export-filename="$f/logo.png" -w 320
-            inkscape "$f/logo.svg" --export-type=png --export-filename="$f/logo@2x.png" -w 640
-            ls -l "$f"/logo*.png
-          done
+          inkscape logo.svg --export-type=png --export-filename=logo.png -w 320
+          inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640
+          ls -l
 
       - name: Commit rendered images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(images): render PNGs from SVG (all folders)"
+          commit_message: "chore(images): render PNGs from SVG"
           file_pattern: |
-            aividz.online/logo*.png
-            fontofmadness.uk/logo*.png
-            madgodnerevar.uk/logo*.png
-            nebula-project.org/logo*.png
-            speldridge/logo*.png
+            ${{ matrix.folder }}/logo*.png
