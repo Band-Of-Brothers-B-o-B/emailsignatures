@@ -47,7 +47,7 @@ jobs:
     permissions:
       contents: write
     strategy:
-      max-parallel: 1   # serialize to avoid non-fast-forward pushes
+      max-parallel: 1
       matrix:
         folder:
           - aividz.online
@@ -74,10 +74,7 @@ jobs:
           GTK_USE_PORTAL=0 inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640 --export-area-drawing
           ls -l
 
-      - run: |
-          git stash --include-untracked || true
-          git pull --rebase origin main
-          git stash pop || true
+      - run: git pull --rebase origin main
 
       - name: Commit rendered images
         uses: stefanzweifel/git-auto-commit-action@v5
