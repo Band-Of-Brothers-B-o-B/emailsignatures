@@ -3,7 +3,7 @@
   <g transform="translate(24,24)">
 
     <defs>
-      <linearGradient id="badgeGrad" x1="0.500" y1="0.000" x2="0.500" y2="1.000">
+      <linearGradient id="badgeGrad" x1="0.854" y1="0.146" x2="0.146" y2="0.854">
         <stop offset="0%" stop-color="#62EFFF"/>
         <stop offset="100%" stop-color="#B388FF"/>
       </linearGradient>
