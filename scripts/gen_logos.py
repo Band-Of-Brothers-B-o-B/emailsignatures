@@ -58,9 +58,13 @@ def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_fro
     defs = ""
     fill = primary
     if use_gradient:
-        defs = _gradient_def(gradient_from or primary, gradient_to or accent, gradient_angle)
+        gradient_from = gradient_from or primary
+        gradient_to = gradient_to or accent
+        defs = _gradient_def(gradient_from, gradient_to, gradient_angle)
         fill = "url(#badgeGrad)"
-    text_color = pick_initials_color(gradient_from or primary, (gradient_to or accent) if use_gradient else None)
+        text_color = pick_initials_color(gradient_from, gradient_to)
+    else:
+        text_color = pick_initials_color(primary, accent)
     if shape == "circle":
         return f"""{defs}
     <circle cx="48" cy="48" r="48" fill="{fill}"/>
@@ -116,15 +120,19 @@ def main():
         os.makedirs(folder, exist_ok=True)
         initials = initials_from_name(b["name"])
         badge_shape = b.get("badge_shape", b.get("bg_shape", "rounded"))
+        use_grad = b.get("use_gradient", False)
+        grad_from = b.get("gradient_from") if use_grad else None
+        grad_to = b.get("gradient_to") if use_grad else None
+        grad_angle = b.get("gradient_angle", 0) if use_grad else 0
         badge = badge_svg(
             badge_shape,
             b.get("primary", "#111827"),
             b.get("accent", "#6B7280"),
             initials,
-            b.get("use_gradient", False),
-            b.get("gradient_from"),
-            b.get("gradient_to"),
-            b.get("gradient_angle", 0),
+            use_grad,
+            grad_from,
+            grad_to,
+            grad_angle,
         )
         svg = TEMPLATE.format(
             badge=badge,
