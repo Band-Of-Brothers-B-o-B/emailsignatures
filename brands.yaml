@@ -17,7 +17,10 @@ brands:
     bg_shape: rounded
     primary: "#4F46E5"
     accent:  "#111827"
-    use_gradient: false
+    use_gradient: true
+    gradient_from: "#4F46E5"
+    gradient_to: "#111827"
+    gradient_angle: 45
 
   - id: madgodnerevar.uk
     name: MadGodNerevar
@@ -25,7 +28,10 @@ brands:
     bg_shape: rounded
     primary: "#0EA5E9"
     accent:  "#0B1020"
-    use_gradient: false
+    use_gradient: true
+    gradient_from: "#0EA5E9"
+    gradient_to: "#0B1020"
+    gradient_angle: 180
 
   - id: nebula-project.org
     name: Nebula Project
@@ -36,15 +42,15 @@ brands:
     use_gradient: true
     gradient_from: "#62EFFF"
     gradient_to: "#B388FF"
-    gradient_angle: 90
+    gradient_angle: 135
 
   - id: speldridge
     name: Speldridge
-    domain: "speldridge.tech · speldridge.co.uk"
+    domain: "speldridge.co.uk · .tech"
     bg_shape: rounded
     primary: "#100629"
     accent:  "#6C2EB7"
     use_gradient: true
     gradient_from: "#6C2EB7"
     gradient_to: "#00DACB"
-    gradient_angle: 135
+    gradient_angle: 0
