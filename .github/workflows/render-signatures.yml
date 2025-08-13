@@ -16,6 +16,7 @@ on:
 
 jobs:
   generate-svgs:
+    # Needed so the job can push regenerated SVGs
     permissions:
       contents: write
     runs-on: ubuntu-latest
