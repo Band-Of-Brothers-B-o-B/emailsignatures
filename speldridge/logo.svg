@@ -3,7 +3,7 @@
   <g transform="translate(24,24)">
 
     <defs>
-      <linearGradient id="badgeGrad" x1="0.854" y1="0.146" x2="0.146" y2="0.854">
+      <linearGradient id="badgeGrad" x1="0.000" y1="0.500" x2="1.000" y2="0.500">
         <stop offset="0%" stop-color="#6C2EB7"/>
         <stop offset="100%" stop-color="#00DACB"/>
       </linearGradient>
@@ -13,6 +13,6 @@
     <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="#111827">S</text>
 
     <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#6C2EB7">Speldridge</text>
-    <text x="120" y="116" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">speldridge.tech · speldridge.co.uk</text>
+    <text x="120" y="116" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">speldridge.co.uk · .tech</text>
   </g>
 </svg>
