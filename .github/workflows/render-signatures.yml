@@ -71,8 +71,8 @@ jobs:
         working-directory: ./${{ matrix.folder }}
         run: |
           set -euo pipefail
-          GTK_USE_PORTAL=0 inkscape logo.svg --export-type=png --export-filename=logo.png   -w 320 --export-area-drawing
-          GTK_USE_PORTAL=0 inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640 --export-area-drawing
+          GTK_USE_PORTAL=0 inkscape --without-gui logo.svg --export-type=png --export-filename=logo.png   -w 320 --export-area-drawing
+          GTK_USE_PORTAL=0 inkscape --without-gui logo.svg --export-type=png --export-filename=logo@2x.png -w 640 --export-area-drawing
           ls -l
 
       - run: git pull --rebase origin main
