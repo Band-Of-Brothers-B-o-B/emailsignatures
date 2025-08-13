@@ -75,8 +75,6 @@ jobs:
           GTK_USE_PORTAL=0 inkscape logo.svg --export-type=png --export-filename=logo@2x.png -w 640 --export-area-drawing
           ls -l
 
-      - run: git pull --rebase origin main
-
       - name: Commit rendered images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
