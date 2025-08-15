@@ -58,7 +58,9 @@ def _gradient_def(gradient_from, gradient_to, angle):
     </defs>
 """
 
-def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_from=None, gradient_to=None, gradient_angle=0):
+def badge_svg(shape, primary, accent, initials, use_gradient=False,
+              gradient_from=None, gradient_to=None, gradient_angle=0,
+              stroke_color=None, stroke_width=None):
     defs = ""
     fill = primary
     if use_gradient:
@@ -69,21 +71,26 @@ def badge_svg(shape, primary, accent, initials, use_gradient=False, gradient_fro
         text_color = pick_initials_color(gradient_from, gradient_to)
     else:
         text_color = pick_initials_color(primary, accent)
+
+    stroke = ""
+    if stroke_color and stroke_width:
+        stroke = f' stroke="{stroke_color}" stroke-width="{stroke_width}"'
+
     if shape == "circle":
         return f"""{defs}
-    <circle cx="48" cy="48" r="48" fill="{fill}"/>
+    <circle cx="48" cy="48" r="48" fill="{fill}"{stroke}/>
     <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="{text_color}">{initials}</text>
 """
     elif shape == "diamond":
         return f"""{defs}
     <g transform="translate(0,0)">
-      <rect x="0" y="0" width="96" height="96" fill="{fill}" transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
+      <rect x="0" y="0" width="96" height="96" fill="{fill}"{stroke} transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
       <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" fill="{text_color}">{initials}</text>
     </g>
 """
     else:  # rounded
         return f"""{defs}
-    <rect rx="16" ry="16" width="96" height="96" fill="{fill}"/>
+    <rect rx="16" ry="16" width="96" height="96" fill="{fill}"{stroke}/>
     <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="{text_color}">{initials}</text>
 """
 
@@ -146,6 +153,8 @@ def main():
         grad_from = b.get("gradient_from") if use_grad else None
         grad_to = b.get("gradient_to") if use_grad else None
         grad_angle = b.get("gradient_angle", 0) if use_grad else 0
+        stroke_color = b.get("badge_stroke_color")
+        stroke_width = b.get("badge_stroke_width")
         badge = badge_svg(
             badge_shape,
             b.get("primary", "#111827"),
@@ -155,6 +164,8 @@ def main():
             grad_from,
             grad_to,
             grad_angle,
+            stroke_color,
+            stroke_width,
         )
         svg = TEMPLATE.format(
             badge=badge,

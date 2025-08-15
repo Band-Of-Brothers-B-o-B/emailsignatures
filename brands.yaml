@@ -1,3 +1,4 @@
+# brands.yaml — edit me to change branding
 brands:
   - id: aividz.online
     name: AIVidz
@@ -9,6 +10,8 @@ brands:
     gradient_from: "#06B6D4"
     gradient_to:   "#3B82F6"
     gradient_angle: 135
+    badge_stroke_color: "#0369A1"
+    badge_stroke_width: 8
   - id: nebula-project.org
     name: Nebula Project
     domain: nebula-project.org
@@ -19,6 +22,8 @@ brands:
     gradient_from: "#4C1D95"
     gradient_to:   "#1E3A8A"
     gradient_angle: 135
+    badge_stroke_color: "#4F46E5"
+    badge_stroke_width: 8
   - id: speldridge
     name: Speldridge
     domain: "speldridge.co.uk · .tech"
@@ -29,6 +34,8 @@ brands:
     gradient_from: "#047857"
     gradient_to:   "#10B981"
     gradient_angle: 0
+    badge_stroke_color: "#065F46"
+    badge_stroke_width: 8
   - id: fontofmadness.uk
     name: Font of Madness
     domain: fontofmadness.uk
@@ -39,6 +46,8 @@ brands:
     gradient_from: "#FBBF24"
     gradient_to:   "#F472B6"
     gradient_angle: 45
+    badge_stroke_color: "#C026D3"
+    badge_stroke_width: 8
   - id: madgodnerevar.uk
     name: MadGodNerevar
     domain: madgodnerevar.uk
@@ -49,3 +58,6 @@ brands:
     gradient_from: "#0F172A"
     gradient_to:   "#1E293B"
     gradient_angle: 180
+    badge_stroke_color: "#166534"
+    badge_stroke_width: 8
+
