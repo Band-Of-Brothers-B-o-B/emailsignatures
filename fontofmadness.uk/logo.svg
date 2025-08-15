@@ -6,7 +6,7 @@
     </linearGradient>
   </defs>
   <circle cx="110" cy="110" r="90" fill="url(#badgeGrad)" stroke="#C026D3" stroke-width="8"/>
-  <text x="110" y="110" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" fill="#111827">FM</text>
+  <text x="110" y="110" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" fill="#111827">FoM</text>
   <text x="250" y="110" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="bold" fill="#C026D3">Font of Madness</text>
   <text x="250" y="150" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">fontofmadness.uk</text>
 </svg>
