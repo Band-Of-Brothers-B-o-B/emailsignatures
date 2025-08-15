@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import os, sys, json, yaml, textwrap, math, re
+try:
+    import cairosvg
+except Exception:
+    cairosvg = None
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/.."
 ROOT = os.path.normpath(ROOT)
@@ -110,6 +114,24 @@ def save_svg(path, svg):
     with open(path, "w", encoding="utf-8") as f:
         f.write(svg)
 
+
+def save_pngs(svg_path, folder):
+    """Export PNGs at standard sizes from *svg_path* into *folder*."""
+    if cairosvg is None:
+        print("cairosvg not available; skipping PNG export", file=sys.stderr)
+        return
+    with open(svg_path, "r", encoding="utf-8") as f:
+        svg_data = f.read()
+    sizes = [
+        (320, 88, "logo.png"),
+        (640, 176, "logo@2x.png"),
+    ]
+    for w, h, name in sizes:
+        out = os.path.join(folder, name)
+        cairosvg.svg2png(bytestring=svg_data, write_to=out,
+                          output_width=w, output_height=h)
+        print(f"wrote {out}")
+
 def main():
     cfg_path = os.path.join(ROOT, "brands.yaml")
     with open(cfg_path, "r", encoding="utf-8") as f:
@@ -145,6 +167,7 @@ def main():
         out = os.path.join(folder, "logo.svg")
         save_svg(out, svg)
         print(f"wrote {out}")
+        save_pngs(out, folder)
 
 if __name__ == "__main__":
     try:
