@@ -11,7 +11,7 @@
 
     <g transform="translate(0,0)">
       <rect x="0" y="0" width="96" height="96" fill="url(#badgeGrad)" stroke="#4F46E5" stroke-width="8" transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
-      <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" fill="white">NP</text>
+      <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" dominant-baseline="middle" fill="white">NP</text>
     </g>
 
     <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#4F46E5">Nebula Project</text>

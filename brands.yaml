@@ -48,6 +48,7 @@ brands:
     gradient_angle: 45
     badge_stroke_color: "#C026D3"
     badge_stroke_width: 8
+    badge_initials: "FoM"
   - id: madgodnerevar.uk
     name: MadGodNerevar
     domain: madgodnerevar.uk
@@ -60,4 +61,5 @@ brands:
     gradient_angle: 180
     badge_stroke_color: "#166534"
     badge_stroke_width: 8
+    badge_initials: "MGN"
 

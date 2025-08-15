@@ -79,19 +79,19 @@ def badge_svg(shape, primary, accent, initials, use_gradient=False,
     if shape == "circle":
         return f"""{defs}
     <circle cx="48" cy="48" r="48" fill="{fill}"{stroke}/>
-    <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="{text_color}">{initials}</text>
+    <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
 """
     elif shape == "diamond":
         return f"""{defs}
     <g transform="translate(0,0)">
       <rect x="0" y="0" width="96" height="96" fill="{fill}"{stroke} transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
-      <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" fill="{text_color}">{initials}</text>
+      <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
     </g>
 """
     else:  # rounded
         return f"""{defs}
     <rect rx="16" ry="16" width="96" height="96" fill="{fill}"{stroke}/>
-    <text x="72" y="86" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" fill="{text_color}">{initials}</text>
+    <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
 """
 
 def initials_from_name(name):
@@ -147,7 +147,7 @@ def main():
     for b in data["brands"]:
         folder = os.path.join(ROOT, b["id"])
         os.makedirs(folder, exist_ok=True)
-        initials = initials_from_name(b["name"])
+        initials = b.get("badge_initials") or initials_from_name(b["name"])
         badge_shape = b.get("badge_shape", b.get("bg_shape", "rounded"))
         use_grad = b.get("use_gradient", False)
         grad_from = b.get("gradient_from") if use_grad else None
