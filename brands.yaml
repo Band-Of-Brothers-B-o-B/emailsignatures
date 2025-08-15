@@ -1,4 +1,3 @@
-# brands.yaml — edit me to change branding
 brands:
   - id: aividz.online
     name: AIVidz
@@ -50,4 +49,3 @@ brands:
     gradient_from: "#0F172A"
     gradient_to:   "#1E293B"
     gradient_angle: 180
-
