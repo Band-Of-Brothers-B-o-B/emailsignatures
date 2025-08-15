@@ -3,56 +3,51 @@ brands:
   - id: aividz.online
     name: AIVidz
     domain: aividz.online
-    bg_shape: rounded
-    primary: "#101D2E"
-    accent:  "#00BFA5"
+    bg_shape: circle
+    primary: "#06B6D4"
+    accent:  "#0369A1"
     use_gradient: true
-    gradient_from: "#111C2E"
-    gradient_to: "#2C145B"
+    gradient_from: "#06B6D4"
+    gradient_to:   "#3B82F6"
     gradient_angle: 135
-
   - id: nebula-project.org
     name: Nebula Project
     domain: nebula-project.org
-    bg_shape: circle
-    primary: "#1A202C"
-    accent:  "#62EFFF"
+    bg_shape: diamond
+    primary: "#4C1D95"
+    accent:  "#4F46E5"
     use_gradient: true
-    gradient_from: "#62EFFF"
-    gradient_to: "#B388FF"
+    gradient_from: "#4C1D95"
+    gradient_to:   "#1E3A8A"
     gradient_angle: 135
-
   - id: speldridge
     name: Speldridge
-    domains:
-      - speldridge.co.uk
-      - speldridge.tech
+    domain: "speldridge.co.uk · .tech"
     bg_shape: rounded
-    primary: "#100629"
-    accent:  "#6C2EB7"
+    primary: "#047857"
+    accent:  "#065F46"
     use_gradient: true
-    gradient_from: "#6C2EB7"
-    gradient_to: "#00DACB"
+    gradient_from: "#047857"
+    gradient_to:   "#10B981"
     gradient_angle: 0
-
   - id: fontofmadness.uk
     name: Font of Madness
     domain: fontofmadness.uk
-    bg_shape: rounded
-    primary: "#4F46E5"
-    accent:  "#111827"
+    bg_shape: circle
+    primary: "#F472B6"
+    accent:  "#C026D3"
     use_gradient: true
-    gradient_from: "#4F46E5"
-    gradient_to: "#111827"
+    gradient_from: "#FBBF24"
+    gradient_to:   "#F472B6"
     gradient_angle: 45
-
   - id: madgodnerevar.uk
     name: MadGodNerevar
     domain: madgodnerevar.uk
-    bg_shape: rounded
-    primary: "#0B1020"
-    accent:  "#0EA5E9"
+    bg_shape: diamond
+    primary: "#0F172A"
+    accent:  "#166534"
     use_gradient: true
-    gradient_from: "#0EA5E9"
-    gradient_to: "#0B1020"
+    gradient_from: "#0F172A"
+    gradient_to:   "#1E293B"
     gradient_angle: 180
+
