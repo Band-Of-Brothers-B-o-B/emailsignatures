@@ -10,12 +10,9 @@ ROOT = os.path.normpath(ROOT)
 
 TEMPLATE = """\
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="220" viewBox="0 0 800 220">
-  <rect width="100%" height="100%" fill="white"/>
-  <g transform="translate(24,24)">
-    {badge}
-    <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="{brand_color}">{brand_name}</text>
-    <text x="120" y="116" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">{domain}</text>
-  </g>
+  {badge}
+  <text x="250" y="110" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="bold" fill="{brand_color}">{brand_name}</text>
+  <text x="250" y="150" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">{domain}</text>
 </svg>
 """
 
@@ -78,20 +75,20 @@ def badge_svg(shape, primary, accent, initials, use_gradient=False,
 
     if shape == "circle":
         return f"""{defs}
-    <circle cx="48" cy="48" r="48" fill="{fill}"{stroke}/>
-    <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
+  <circle cx="110" cy="110" r="90" fill="{fill}"{stroke}/>
+  <text x="110" y="110" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
 """
     elif shape == "diamond":
         return f"""{defs}
-    <g transform="translate(0,0)">
-      <rect x="0" y="0" width="96" height="96" fill="{fill}"{stroke} transform="translate(48,48) rotate(45) translate(-48,-48)" rx="16" ry="16"/>
-      <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="36" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
-    </g>
+  <g transform="translate(110,110)">
+    <rect x="-90" y="-90" width="180" height="180" rx="40" ry="40" fill="{fill}"{stroke} transform="rotate(45)"/>
+    <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
+  </g>
 """
     else:  # rounded
         return f"""{defs}
-    <rect rx="16" ry="16" width="96" height="96" fill="{fill}"{stroke}/>
-    <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
+  <rect x="20" y="20" width="180" height="180" rx="40" ry="40" fill="{fill}"{stroke}/>
+  <text x="110" y="110" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" dominant-baseline="middle" fill="{text_color}">{initials}</text>
 """
 
 def initials_from_name(name):

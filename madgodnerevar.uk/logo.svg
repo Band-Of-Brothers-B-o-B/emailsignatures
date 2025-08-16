@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="220" viewBox="0 0 800 220">
 
-  <defs>
-    <linearGradient id="badgeGrad" x1="1.000" y1="0.500" x2="0.000" y2="0.500">
-      <stop offset="0%" stop-color="#0F172A"/>
-      <stop offset="100%" stop-color="#1E293B"/>
-    </linearGradient>
-  </defs>
+    <defs>
+      <linearGradient id="badgeGrad" x1="1.000" y1="0.500" x2="0.000" y2="0.500">
+        <stop offset="0%" stop-color="#0F172A"/>
+        <stop offset="100%" stop-color="#1E293B"/>
+      </linearGradient>
+    </defs>
 
-  <path d="M110 20 L200 110 L110 200 L20 110 Z" fill="url(#badgeGrad)" stroke="#166534" stroke-width="8"/>
-  <text x="110" y="110" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" fill="white">MGN</text>
+  <circle cx="110" cy="110" r="90" fill="url(#badgeGrad)" stroke="#166534" stroke-width="8"/>
+  <text x="110" y="110" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" dominant-baseline="middle" fill="white">MGN</text>
 
   <text x="250" y="110" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="bold" fill="#166534">MadGodNerevar</text>
   <text x="250" y="150" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">madgodnerevar.uk</text>

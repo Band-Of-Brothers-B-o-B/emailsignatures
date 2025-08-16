@@ -15,7 +15,8 @@ brands:
   - id: nebula-project.org
     name: Nebula Project
     domain: nebula-project.org
-    bg_shape: diamond
+    bg_shape: circle
+    badge_initials: "NP"
     primary: "#4C1D95"
     accent:  "#4F46E5"
     badge_stroke_color: "#4F46E5"
@@ -41,6 +42,7 @@ brands:
     name: Font of Madness
     domain: fontofmadness.uk
     bg_shape: circle
+    badge_initials: "FoM"
     primary: "#F472B6"
     accent:  "#C026D3"
     badge_stroke_color: "#C026D3"
