@@ -3,6 +3,7 @@ brands:
     name: AIVidz
     domain: aividz.online
     bg_shape: circle
+    badge_initials: "AI"
     primary: "#06B6D4"
     accent:  "#0369A1"
     badge_stroke_color: "#0369A1"
@@ -26,7 +27,8 @@ brands:
   - id: speldridge
     name: Speldridge
     domain: "speldridge.co.uk · speldridge.tech"
-    bg_shape: rounded
+    badge_initials: "SE"
+    bg_shape: circle
     primary: "#047857"
     accent:  "#065F46"
     badge_stroke_color: "#065F46"
@@ -50,11 +52,12 @@ brands:
   - id: madgodnerevar.uk
     name: MadGodNerevar
     domain: madgodnerevar.uk
-    bg_shape: diamond
+    bg_shape: circle
     primary: "#0F172A"
     accent:  "#166534"
     badge_stroke_color: "#166534"
     badge_stroke_width: 8
+    badge_initials: "MGN"
     use_gradient: true
     gradient_from: "#0F172A"
     gradient_to:   "#1E293B"
