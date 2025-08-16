@@ -73,7 +73,7 @@ def badge_svg(shape, primary, accent, initials, use_gradient=False,
         text_color = pick_initials_color(primary, accent)
 
     stroke = ""
-    if stroke_color and stroke_width:
+    if stroke_color is not None and stroke_width is not None:
         stroke = f' stroke="{stroke_color}" stroke-width="{stroke_width}"'
 
     if shape == "circle":
