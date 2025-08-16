@@ -9,7 +9,7 @@
       </linearGradient>
     </defs>
 
-    <circle cx="48" cy="48" r="48" fill="url(#badgeGrad)"/>
+    <circle cx="48" cy="48" r="48" fill="url(#badgeGrad)" stroke="#0369A1" stroke-width="8"/>
     <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="#111827">AV</text>
 
     <text x="120" y="82" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="#0369A1">AIVidz</text>
