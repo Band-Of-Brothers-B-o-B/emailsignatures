@@ -64,3 +64,29 @@ brands:
     gradient_from: "#0F172A"
     gradient_to:   "#1E293B"
     gradient_angle: 180
+  - id: recruitpro.uk
+    name: RecruitPro
+    domain: recruitpro.uk
+    bg_shape: circle
+    badge_initials: "RP"
+    primary: "#0B3D91"
+    accent:  "#0B3D91"
+    badge_stroke_color: "#0B3D91"
+    badge_stroke_width: 8
+    use_gradient: true
+    gradient_from: "#0B3D91"
+    gradient_to:   "#1E5AB8"
+    gradient_angle: 135
+  - id: jrrecruitment.uk
+    name: JR Recruitment
+    domain: jrrecruitment.uk
+    bg_shape: circle
+    badge_initials: "JR"
+    primary: "#1F6F3D"
+    accent:  "#1F6F3D"
+    badge_stroke_color: "#1F6F3D"
+    badge_stroke_width: 8
+    use_gradient: true
+    gradient_from: "#1F6F3D"
+    gradient_to:   "#2F9E59"
+    gradient_angle: 135
