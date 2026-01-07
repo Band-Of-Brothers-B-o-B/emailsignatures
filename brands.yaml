@@ -67,7 +67,6 @@ brands:
   - id: recruitpro.uk
     name: RecruitPro
     domain: recruitpro.uk
-    bg_shape: circle
     badge_initials: "RP"
     primary: "#0B3D91"
     accent:  "#0B3D91"
@@ -80,7 +79,6 @@ brands:
   - id: jrrecruitment.uk
     name: JR Recruitment
     domain: jrrecruitment.uk
-    bg_shape: circle
     badge_initials: "JR"
     primary: "#1F6F3D"
     accent:  "#1F6F3D"
