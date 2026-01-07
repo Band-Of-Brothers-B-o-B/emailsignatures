@@ -7,8 +7,10 @@ on:
       - 'brands.yaml'
       - 'aividz.online/logo.svg'
       - 'fontofmadness.uk/logo.svg'
+      - 'jrrecruitment.uk/logo.svg'
       - 'madgodnerevar.uk/logo.svg'
       - 'nebula-project.org/logo.svg'
+      - 'recruitpro.uk/logo.svg'
       - 'speldridge/logo.svg'
       - '.github/workflows/render-signatures.yml'
       - 'scripts/gen_logos.py'
@@ -38,8 +40,10 @@ jobs:
           file_pattern: |
             aividz.online/logo.svg
             fontofmadness.uk/logo.svg
+            jrrecruitment.uk/logo.svg
             madgodnerevar.uk/logo.svg
             nebula-project.org/logo.svg
+            recruitpro.uk/logo.svg
             speldridge/logo.svg
 
   render-pngs:
